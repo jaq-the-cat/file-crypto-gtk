@@ -22,3 +22,7 @@ install: $(SRC)
 	sudo $(CC) -D__PRODUCTION=0 $(CFLAGS) $(LDFLAGS) $^ -o /usr/bin/file-crypto-gtk
 	sudo mkdir /usr/share/file-crypto-gtk
 	sudo cp file-crypto-gui.glade /usr/share/file-crypto-gtk/file-crypto-gui.glade
+
+uninstall: $(SRC)
+	sudo rm /usr/bin/file-crypto-gtk
+	sudo rm -rf /usr/share/file-crypto-gtk
