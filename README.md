@@ -4,7 +4,13 @@ GTK+3 version of [jaq-the-cat/file-crypto](https://github.com/jaq-the-cat/file-c
 Lets you encrypt a file with a 32-byte key (literally just 32 bytes inside a file, no cool funny formats) or you can leave
 out the key and let the program generate it for you in your Documents folder.
 
+### Dependencies
+- the clang compiler
+- GTK+3
+- OpenSSL
+
 ### Installation
+
 First, clone the repository
 
 `git clone https://github.com/jaq-the-cat/file-crypto-gtk.git`
