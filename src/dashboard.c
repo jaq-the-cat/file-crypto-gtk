@@ -14,6 +14,11 @@ extern GtkWidget *failure_dialog;
 extern GtkWidget *failure_msg;
 extern global g;
 
+void clear_bytes(byte *buf, int len) {
+  for (int i=0; i<len; i++)
+    buf[i] = 0;
+}
+
 void make_sensitive_if_cool() {
   if (g.selected_filename[0] != 0) { // if file selected...
     // let user use encrypt button
@@ -32,10 +37,14 @@ void make_sensitive_if_cool() {
 
 void clear_key() {
   gtk_file_chooser_unselect_all(GTK_FILE_CHOOSER(pick_key));
+  clear_bytes((byte*) g.key_filename, 1024);
+  make_sensitive_if_cool();
 }
 
 void clear_file() {
   gtk_file_chooser_unselect_all(GTK_FILE_CHOOSER(pick_file));
+  clear_bytes((byte*) g.selected_filename, 1024);
+  make_sensitive_if_cool();
 }
 
 void key_selected(GtkFileChooser *self, gpointer user_data) {
