@@ -144,8 +144,7 @@ int encrypt_file(char *filename, char *extension, char *key_filename) {
     byte key_data[32];
     int key_data_len = 32;
     if (read_key(key_filename, key_data) != 0) {
-      printf("`%s` not found, generating `key.key`...\n", key_filename);
-      generate_key_file("key.key", key_data);
+      return -1;
     };
 
     EVP_CIPHER_CTX *en = EVP_CIPHER_CTX_new();
