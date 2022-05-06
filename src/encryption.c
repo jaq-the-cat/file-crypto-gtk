@@ -78,6 +78,19 @@ byte *aes_decrypt(EVP_CIPHER_CTX *e, byte *ciphertext, int *len) {
   return plaintext;
 }
 
+int write_to_file(char* filename, byte* fbytes, int len) {
+  FILE* file = fopen(filename, "wb");
+  if (!file) {
+    fprintf(stderr, "! Error opening file `%s`\n", filename);
+    return -1;
+  }
+
+  fwrite(fbytes, 1, len, file);
+  fclose(file);
+
+  return 0;
+}
+
 int generate_key_file(char* filename, byte key[32]) {
   FILE* file = fopen(filename, "wb");
   if (!file) {
@@ -86,7 +99,7 @@ int generate_key_file(char* filename, byte key[32]) {
 
   RAND_bytes(key, 32);
 
-  fwrite(key, 1, 32, file);
+  write_to_file("key.key", key, 32);
   return 0;
 }
 
@@ -117,19 +130,6 @@ int read_key(char* filename, byte key[32]) {
   return 0;
 }
 
-int write_to_file(char* filename, byte* fbytes, int len) {
-  FILE* file = fopen(filename, "wb");
-  if (!file) {
-    fprintf(stderr, "! Error opening file `%s`\n", filename);
-    return -1;
-  }
-
-  fwrite(fbytes, 1, len, file);
-  fclose(file);
-
-  return 0;
-}
-
 int encrypt_file(char *filename, char *extension, char *key_filename) {
     // setup output filename
     char *out_filename = malloc(strlen(filename) + strlen(extension));
@@ -143,10 +143,9 @@ int encrypt_file(char *filename, char *extension, char *key_filename) {
     // generate key
     byte key_data[32];
     int key_data_len = 32;
-    if (read_key(key_filename, key_data) > 0) {
+    if (read_key(key_filename, key_data) != 0) {
       printf("`%s` not found, generating `key.key`...\n", key_filename);
       generate_key_file("key.key", key_data);
-      return -1;
     };
 
     EVP_CIPHER_CTX *en = EVP_CIPHER_CTX_new();
@@ -158,7 +157,7 @@ int encrypt_file(char *filename, char *extension, char *key_filename) {
     }
 
     byte *encrypted = aes_encrypt(en, fdata_en.fbytes, &len_en);
-    write_to_file(filename, encrypted, len_en);
+    write_to_file(out_filename, encrypted, len_en);
 
     free(fdata_en.fbytes);
     free(encrypted);
@@ -193,7 +192,7 @@ int decrypt_file(char *filename, char *extension, char *key_filename) {
     }
 
     byte *decrypted = aes_decrypt(de, fdata_de.fbytes, &len_de);
-    write_to_file(filename, decrypted, len_de);
+    write_to_file(out_filename, decrypted, len_de);
 
     free(fdata_de.fbytes);
     free(decrypted);

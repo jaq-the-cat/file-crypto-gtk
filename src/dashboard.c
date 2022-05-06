@@ -4,14 +4,11 @@
 #include "gtkm.h"
 #include "encryption.h"
 
-extern GtkBuilder *builder;
+extern GtkWidget *encrypt_btn;
+extern GtkWidget *decrypt_btn;
 extern global g;
 
-WIDGET_S(encrypt_btn, "encrypt_btn");
-WIDGET_S(decrypt_btn, "decrypt_btn");
-
 void make_sensitive_if_cool() {
-  init_encrypt_btn(builder);
   if (g.selected_filename[0] != 0) { // if file selected...
     // let user use encrypt button
     gtk_widget_set_sensitive(encrypt_btn, true);
@@ -25,11 +22,13 @@ void make_sensitive_if_cool() {
 void key_selected(GtkFileChooser *self, gpointer user_data) {
   // set the global key filename to be equal to the filename selected by the user
   strcpy(g.key_filename, gtk_file_chooser_get_filename(self));
+  make_sensitive_if_cool();
 }
 
 void file_selected(GtkFileChooser *self, gpointer user_data) {
   // set global filename to encrypt/decrypt to be equal to the filename selected by the user
   strcpy(g.selected_filename, gtk_file_chooser_get_filename(self));
+  make_sensitive_if_cool();
 }
 
 void ext_changed(GtkEntry *self, gpointer user_data) {
@@ -41,9 +40,13 @@ void ext_changed(GtkEntry *self, gpointer user_data) {
 }
 
 void encrypt(GtkButton *_) {
-  encrypt_file(g.selected_filename, g.ext, g.key_filename);
+  if (encrypt_file(g.selected_filename, g.ext, g.key_filename) == 0) {
+    printf("SUCCESS!\n");
+  };
 }
 
 void decrypt(GtkButton *_) {
-  decrypt_file(g.selected_filename, g.ext, g.key_filename);
+  if (decrypt_file(g.selected_filename, g.ext, g.key_filename) == 0) {
+    printf("SUCCESS!\n");
+  };
 }
