@@ -3,6 +3,12 @@
 #include "gtkm.h"
 #include <gtk-3.0/gtk/gtk.h>
 
+#ifdef __PRODUCTION
+#define GLADE_LOCATION "/var/lib/file-crypto-gtk/file-crypto-gui.glade"
+#else
+#define GLADE_LOCATION "file-crypto-gui.glade"
+#endif
+
 WIDGET_S(window, "main_window");
 WIDGET_S(encrypt_btn, "encrypt_btn");
 WIDGET_S(decrypt_btn, "decrypt_btn");
@@ -17,7 +23,7 @@ int main(int argc, char* argv[]) {
   // initialize gtk
   gtk_init(&argc, &argv);
   builder = gtk_builder_new();
-  gtk_builder_add_from_file(builder, "file-crypto-gui.glade", NULL);
+  gtk_builder_add_from_file(builder, GLADE_LOCATION, NULL);
 
   // initialize global widgets
   init_window(builder);
