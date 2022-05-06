@@ -103,6 +103,10 @@ int generate_key_file(char* filename, byte key[32]) {
 
 file_wsize get_file_contents(char* filename) {
   FILE* file = fopen(filename, "rb");
+  if (!file) {
+    fprintf(stderr, "! Error opening file `%s`\n", filename);
+    return (file_wsize) { NULL, 0 };
+  }
   struct stat sb;
   if (stat(filename, &sb) == -1) {
     fprintf(stderr, "! `stat` error\n");
@@ -119,6 +123,8 @@ file_wsize get_file_contents(char* filename) {
 
 int read_key(char* filename, byte key[32]) {
   file_wsize key_file = get_file_contents(filename);
+  if (key_file.fbytes == NULL)
+    return -1;
   if (key_file.length != 32) {
     fprintf(stderr, "! Key file `%s` invalid\n", filename);
     return -1;
@@ -136,6 +142,7 @@ int encrypt_file(char *filename, char *extension, char *key_filename) {
 
     // get file contents to encrypt
     file_wsize fdata_en = get_file_contents(filename);
+    if (fdata_en.fbytes == NULL) return -1;
     int len_en = fdata_en.length;
 
     // generate key
@@ -162,11 +169,15 @@ int encrypt_file(char *filename, char *extension, char *key_filename) {
     }
 
     byte *encrypted = aes_encrypt(en, fdata_en.fbytes, &len_en);
-    write_to_file(out_filename, encrypted, len_en);
-
     free(fdata_en.fbytes);
+    if (write_to_file(out_filename, encrypted, len_en) != 0) {
+      free(encrypted);
+      free(out_filename);
+      return -1;
+    };
     free(encrypted);
     free(out_filename);
+
 
     return 0;
 }
@@ -179,6 +190,7 @@ int decrypt_file(char *filename, char *extension, char *key_filename) {
 
     // get file contents to decrypt
     file_wsize fdata_de = get_file_contents(filename);
+    if (fdata_de.fbytes == NULL) return -1;
     int len_de = fdata_de.length;
 
     // generate key
@@ -197,9 +209,13 @@ int decrypt_file(char *filename, char *extension, char *key_filename) {
     }
 
     byte *decrypted = aes_decrypt(de, fdata_de.fbytes, &len_de);
-    write_to_file(out_filename, decrypted, len_de);
-
     free(fdata_de.fbytes);
+    if (write_to_file(out_filename, decrypted, len_de) != 0) {
+      free(decrypted);
+      free(out_filename);
+      return -1;
+    };
+
     free(decrypted);
     free(out_filename);
 
