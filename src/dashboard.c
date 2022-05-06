@@ -6,6 +6,10 @@
 
 extern GtkWidget *encrypt_btn;
 extern GtkWidget *decrypt_btn;
+extern GtkWidget *success_dialog;
+extern GtkWidget *success_msg;
+extern GtkWidget *failure_dialog;
+extern GtkWidget *failure_msg;
 extern global g;
 
 void make_sensitive_if_cool() {
@@ -42,11 +46,21 @@ void ext_changed(GtkEntry *self, gpointer user_data) {
 void encrypt(GtkButton *_) {
   if (encrypt_file(g.selected_filename, g.ext, g.key_filename) == 0) {
     printf("SUCCESS!\n");
-  };
+    gtk_label_set_text(GTK_LABEL(success_msg), "Success!\nMessage encrypted.");
+    gtk_dialog_run(GTK_DIALOG(success_dialog));
+  } else {
+    gtk_label_set_text(GTK_LABEL(failure_msg), "Error! Message could not be encrypted.");
+    gtk_dialog_run(GTK_DIALOG(failure_dialog));
+  }
 }
 
 void decrypt(GtkButton *_) {
   if (decrypt_file(g.selected_filename, g.ext, g.key_filename) == 0) {
     printf("SUCCESS!\n");
-  };
+    gtk_label_set_text(GTK_LABEL(success_msg), "Success!\nMessage decrypted.");
+    gtk_dialog_run(GTK_DIALOG(success_dialog));
+  } else {
+    gtk_label_set_text(GTK_LABEL(failure_msg), "Error! Message could not be decrypted.");
+    gtk_dialog_run(GTK_DIALOG(failure_dialog));
+  }
 }
