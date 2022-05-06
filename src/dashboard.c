@@ -6,6 +6,8 @@
 
 extern GtkWidget *encrypt_btn;
 extern GtkWidget *decrypt_btn;
+extern GtkWidget *pick_key;
+extern GtkWidget *pick_file;
 extern GtkWidget *success_dialog;
 extern GtkWidget *success_msg;
 extern GtkWidget *failure_dialog;
@@ -21,6 +23,14 @@ void make_sensitive_if_cool() {
       gtk_widget_set_sensitive(decrypt_btn, true);
     }
   }
+}
+
+void clear_key() {
+  gtk_file_chooser_unselect_all(GTK_FILE_CHOOSER(pick_key));
+}
+
+void clear_file() {
+  gtk_file_chooser_unselect_all(GTK_FILE_CHOOSER(pick_file));
 }
 
 void key_selected(GtkFileChooser *self, gpointer user_data) {

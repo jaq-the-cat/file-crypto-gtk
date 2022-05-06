@@ -12,6 +12,8 @@
 WIDGET_S(window, "main_window");
 WIDGET_S(encrypt_btn, "encrypt_btn");
 WIDGET_S(decrypt_btn, "decrypt_btn");
+WIDGET_S(pick_key, "pick_key");
+WIDGET_S(pick_file, "pick_file");
 WIDGET_S(success_dialog, "success_dialog");
 WIDGET_S(success_msg, "success_msg");
 WIDGET_S(failure_dialog, "failure_dialog");
@@ -29,6 +31,8 @@ int main(int argc, char* argv[]) {
   init_window(builder);
   init_encrypt_btn(builder);
   init_decrypt_btn(builder);
+  init_pick_key(builder);
+  init_pick_file(builder);
   init_success_dialog(builder);
   init_success_msg(builder);
   init_failure_dialog(builder);

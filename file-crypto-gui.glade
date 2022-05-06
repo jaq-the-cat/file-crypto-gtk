@@ -106,12 +106,38 @@
               </packing>
             </child>
             <child>
-              <object class="GtkFileChooserButton">
+              <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="create-folders">False</property>
-                <property name="title" translatable="yes">Pick Key file</property>
-                <signal name="file-set" handler="key_selected" swapped="no"/>
+                <child>
+                  <object class="GtkFileChooserButton" id="pick_key">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="create-folders">False</property>
+                    <property name="title" translatable="yes">Pick Key file</property>
+                    <signal name="file-set" handler="key_selected" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label">gtk-clear</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-stock">True</property>
+                    <signal name="clicked" handler="clear_key" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -151,12 +177,38 @@
               </packing>
             </child>
             <child>
-              <object class="GtkFileChooserButton">
+              <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="create-folders">False</property>
-                <property name="title" translatable="yes">Pick file to encrypt/decrypt</property>
-                <signal name="file-set" handler="file_selected" swapped="no"/>
+                <child>
+                  <object class="GtkFileChooserButton" id="pick_file">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="create-folders">False</property>
+                    <property name="title" translatable="yes">Pick file to encrypt/decrypt</property>
+                    <signal name="file-set" handler="file_selected" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label">gtk-clear</property>
+                    <property name="visible">True</property>
+                    <property name="can-focus">True</property>
+                    <property name="receives-default">True</property>
+                    <property name="use-stock">True</property>
+                    <signal name="clicked" handler="clear_file" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
