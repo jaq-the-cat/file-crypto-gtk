@@ -4,7 +4,7 @@
 #include <gtk-3.0/gtk/gtk.h>
 
 #ifdef __PRODUCTION
-#define GLADE_LOCATION "/var/lib/file-crypto-gtk/file-crypto-gui.glade"
+#define GLADE_LOCATION "/usr/share/file-crypto-gtk/file-crypto-gui.glade"
 #else
 #define GLADE_LOCATION "file-crypto-gui.glade"
 #endif
