@@ -1,4 +1,7 @@
 #include "encryption.h"
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
 
 typedef unsigned char byte;
 
@@ -144,7 +147,15 @@ int encrypt_file(char *filename, char *extension, char *key_filename) {
     byte key_data[32];
     int key_data_len = 32;
     if (read_key(key_filename, key_data) != 0) {
-      return -1;
+      const char* homedir = getenv("HOME");
+      char* path_to_key = malloc(strlen(homedir) + strlen("/Documents/key.key"));
+
+      strcpy(path_to_key, homedir); // $HOME
+      strcat(path_to_key, "/Documents/key.key"); // $HOME/Documents/key.key
+
+      printf("`%s` not found, generating `%s`...\n", key_filename, path_to_key);
+
+      generate_key_file(path_to_key, key_data);
     };
 
     EVP_CIPHER_CTX *en = EVP_CIPHER_CTX_new();
