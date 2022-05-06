@@ -95,14 +95,9 @@ int write_to_file(char* filename, byte* fbytes, int len) {
 }
 
 int generate_key_file(char* filename, byte key[32]) {
-  FILE* file = fopen(filename, "wb");
-  if (!file) {
-    return 1;
-  }
-
   RAND_bytes(key, 32);
 
-  write_to_file("key.key", key, 32);
+  write_to_file(filename, key, 32);
   return 0;
 }
 
