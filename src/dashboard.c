@@ -18,10 +18,15 @@ void make_sensitive_if_cool() {
   if (g.selected_filename[0] != 0) { // if file selected...
     // let user use encrypt button
     gtk_widget_set_sensitive(encrypt_btn, true);
-    if (g.key_filename[0] != 0) { // if file and key selected...
-      // let user use decrypt button
-      gtk_widget_set_sensitive(decrypt_btn, true);
-    }
+  } else {
+    gtk_widget_set_sensitive(encrypt_btn, false);
+  }
+
+  if (g.selected_filename[0] != 0 && g.key_filename[0] != 0) { // if file and key selected...
+    // let user use decrypt button
+    gtk_widget_set_sensitive(decrypt_btn, true);
+  } else {
+    gtk_widget_set_sensitive(decrypt_btn, false);
   }
 }
 
