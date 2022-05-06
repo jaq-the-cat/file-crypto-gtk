@@ -6,10 +6,15 @@ out the key and let the program generate it for you in your Documents folder.
 
 ### Installation
 First, clone the repository
+
 `git clone https://github.com/jaq-the-cat/file-crypto-gtk.git`
+
 Then cd into it
+
 `cd file-crypto-gtk`
+
 And install the program
+
 `sudo make install`
 
 ### Running the program
