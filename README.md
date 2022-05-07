@@ -24,13 +24,5 @@ And install the program
 `sudo make install`
 
 ### Running the program
-To run the program, type in `file-crypto-gtk` into the CLI and it will open up for you. For running it through an App Finder, you will need to create a .desktop file, like this one:
-```
-[Desktop Entry]
-Name=FileCrypto
-Exec=/usr/bin/file-crypto-gtk
-Icon=
-Terminal=false
-Type=Application
-Categories=Cryptography;
-```
+To run the program, type in `file-crypto-gtk` into the CLI and it will open up for you.
+You could also use it through an App Finder, where its name is FileCrypto
