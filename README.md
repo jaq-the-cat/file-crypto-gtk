@@ -29,6 +29,7 @@ You could also use it through an App Finder, where its name is FileCrypto
 
 ### How to Use
 - AES256 (32 byte) Key
+
   Select the key file from the filesystem.
 
   On encryption, if it is left empty, a file named `key.key` will be generated in your Documents folder (`$HOME/Documents/key.key`) for later decryption.
@@ -36,11 +37,13 @@ You could also use it through an App Finder, where its name is FileCrypto
   Must not be left empty when decrypting a file.
 
 - File to encrypt/decrypt
+
   Select the file to encrypt/decrypt from the filesystem.
 
   Must not be left empty when encrypting or decrypting (what file would you even encrypt or decrypt?).
 
 - Output extension
+
   Extension for the output file, leave blank to replace the selected file with the encrypted or decrypted version.
 
   For example, if you are encrypting a file named `$HOME/file.txt`, and the output extension is set to `.encrypted`, the program will generate an encrypted file `$HOME/file.txt.encrypted` and leave `$HOME/file.txt` unchanged.
