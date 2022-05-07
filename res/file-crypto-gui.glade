@@ -55,7 +55,7 @@
     </child>
   </object>
   <object class="GtkWindow" id="main_window">
-    <property name="height-request">600</property>
+    <property name="height-request">400</property>
     <property name="can-focus">False</property>
     <signal name="destroy" handler="exit_app" swapped="no"/>
     <child>
@@ -64,6 +64,7 @@
         <property name="can-focus">False</property>
         <property name="margin-start">10</property>
         <property name="margin-end">10</property>
+        <property name="margin-bottom">10</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel">
@@ -168,7 +169,7 @@
                 <property name="margin-start">3</property>
                 <property name="margin-bottom">3</property>
                 <property name="xpad">0</property>
-                <property name="label" translatable="yes">Selected file</property>
+                <property name="label" translatable="yes">File to encrypt/decrypt</property>
               </object>
               <packing>
                 <property name="expand">False</property>
