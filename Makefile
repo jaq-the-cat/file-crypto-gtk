@@ -19,12 +19,16 @@ compile: $(SRC)
 	$(CC) $(CFLAGS) $(LDFLAGS) $^ -o a.out
 
 install: $(SRC)
-	sudo $(CC) -D__PRODUCTION=0 $(CFLAGS) $(LDFLAGS) $^ -o /usr/bin/file-crypto-gtk # compile program and add binary to system
-	sudo mkdir /usr/share/file-crypto-gtk # create resources folder
-	sudo cp res/file-crypto-gui.glade /usr/share/file-crypto-gtk/file-crypto-gui.glade # add UI resources (.glade)
+	sudo $(CC) -D__PRODUCTION=0 $(CFLAGS) $(LDFLAGS) $^ -o /usr/bin/file-crypto-gtk #   # compile program and add binary to system
+	sudo mkdir /usr/share/file-crypto-gtk #                                             # create resources folder
+	sudo cp res/file-crypto-gui.glade /usr/share/file-crypto-gtk/file-crypto-gui.glade ## add UI resources (.glade)
 	sudo cp res/file-crypto-gtk.desktop /usr/share/applications/file-crypto-gtk.desktop # add .desktop entry
 
 uninstall: $(SRC)
-	sudo rm /usr/bin/file-crypto-gtk # remove binary
-	sudo rm -rf /usr/share/file-crypto-gtk # remove UI resources (.glade)
-	sudo rm /usr/share/applications/file-crypto-gtk.desktop # remove .destop entry
+	sudo rm /usr/bin/file-crypto-gtk #                      # remove binary
+	sudo rm -rf /usr/share/file-crypto-gtk #                # remove UI resources (.glade)
+	sudo rm /usr/share/applications/file-crypto-gtk.desktop # remove .desktop entry
+
+reinstall: $(SRC)
+	$(MAKE) uninstall
+	$(MAKE) install
