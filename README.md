@@ -9,7 +9,7 @@ out the key and let the program generate it for you in your Documents folder.
 - GTK+3
 - OpenSSL
 
-### Installation
+### Install
 
 First, clone the repository
 
@@ -22,6 +22,10 @@ Then cd into it
 And install the program
 
 `sudo make install`
+
+### Uninstall
+
+Simply run `sudo make uninstall` in the project folder. If you previously deleted it, clone the project again with `git clone https://github.com/jaq-the-cat/file-crypto-gtk.git`
 
 ### Running the program
 To run the program, type in `file-crypto-gtk` into the CLI and it will open up for you.
