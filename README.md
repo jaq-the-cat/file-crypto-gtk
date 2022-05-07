@@ -36,7 +36,7 @@ You could also use it through an App Finder, where its name is FileCrypto
 
   Select the key file from the filesystem.
 
-  On encryption, if it is left empty, a file named `key.key` will be generated in your Documents folder (`$HOME/Documents/key.key`) for later decryption.
+  On encryption, if it is left empty, a file named `key.key` will be generated in your Documents folder (`~/Documents/key.key`) for later decryption.
   
   Must not be left empty when decrypting a file.
 
@@ -50,6 +50,6 @@ You could also use it through an App Finder, where its name is FileCrypto
 
   Extension for the output file, leave blank to replace the selected file with the encrypted or decrypted version.
 
-  For example, if you are encrypting a file named `$HOME/file.txt`, and the output extension is set to `.encrypted`, the program will generate an encrypted file `$HOME/file.txt.encrypted` and leave `$HOME/file.txt` unchanged.
+  For example, if you are encrypting a file named `~/file.txt`, and the output extension is set to `.encrypted`, the program will generate an encrypted file `~/file.txt.encrypted` and leave `~/file.txt` unchanged.
 
-  If you leave it blank, `$HOME/file.txt` will be replaced with an encrypted version of itself, and you will lose the unencrypted contents. **If you delete the key used for encryption, the file will be unrecoverable**.
+  If you leave it blank, `~/file.txt` will be replaced with an encrypted version of itself, and you will lose the unencrypted contents. **If you delete the key used for encryption, the file will be unrecoverable**.

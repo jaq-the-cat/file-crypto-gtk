@@ -40,6 +40,8 @@
           <object class="GtkLabel" id="failure_msg">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
             <property name="justify">center</property>
             <attributes>
               <attribute name="font-desc" value="Monospace Bold 16"/>
@@ -360,6 +362,8 @@
           <object class="GtkLabel" id="success_msg">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
+            <property name="margin-start">10</property>
+            <property name="margin-end">10</property>
             <property name="justify">center</property>
             <attributes>
               <attribute name="font-desc" value="Monospace Bold 16"/>
